@@ -1,37 +1,35 @@
-Shadowsocks-libev for OpenWrt
-===
-
-[![Download][B]][2]  
+Shadowsocksr-libev for OpenWrt
+=== 
 
 简介
 ---
 
- 本项目是 [shadowsocks-libev][1] 在 OpenWrt 上的移植  
+ 本项目是 [shadowsocksr-libev][1] 在 OpenWrt 上的移植  
 
 特性
 ---
 
-软件包只包含 [shadowsocks-libev][1] 的可执行文件, 可与 [luci-app-shadowsocks][3] 搭配使用  
+软件包只包含 [shadowsocksr-libev][1] 的可执行文件, 可与 [luci-app-shadowsocks][2] 搭配使用
 可编译两种版本  
 
- - shadowsocks-libev
+ - shadowsocksr-libev
 
    ```
    客户端/
    └── usr/
        └── bin/
-           ├── ss-local       // 提供 SOCKS 代理
-           ├── ss-redir       // 提供透明代理, 从 v2.2.0 开始支持 UDP
-           └── ss-tunnel      // 提供端口转发, 可用于 DNS 查询
+           ├── ssr-local       // 提供 SOCKS 代理
+           ├── ssr-redir       // 提供透明代理, 从 v2.2.0 开始支持 UDP
+           └── ssr-tunnel      // 提供端口转发, 可用于 DNS 查询
    ```
 
- - shadowsocks-libev-server
+ - shadowsocksr-libev-server
 
    ```
    服务端/
    └── usr/
        └── bin/
-           └── ss-server      // 服务端可执行文件
+           └── ssr-server      // 服务端可执行文件
    ```
 
 编译
@@ -45,12 +43,12 @@ Shadowsocks-libev for OpenWrt
    cd OpenWrt-SDK-ar71xx-*
    # 添加 feeds
    git clone https://github.com/shadowsocks/openwrt-feeds.git package/feeds
-   # 获取 shadowsocks-libev Makefile
-   git clone https://github.com/shadowsocks/openwrt-shadowsocks.git package/shadowsocks-libev
-   # 选择要编译的包 Network -> shadowsocks-libev
+   # 获取 shadowsocksr-libev Makefile
+   git clone https://github.com/kuoruan/openwrt-shadowsocksr.git package/shadowsocksr-libev
+   # 选择要编译的包 Network -> shadowsocksr-libev
    make menuconfig
    # 开始编译
-   make package/shadowsocks-libev/compile V=99
+   make package/shadowsocksr-libev/compile V=99
    ```
 
 配置
@@ -67,8 +65,6 @@ Shadowsocks-libev for OpenWrt
    password       | 字符串   | 服务端设置的密码
    method         | 字符串   | 加密方式, [详情参考][E]
    timeout        | 整数值   | 超时时间（秒）, 默认 60
-   plugin         | 字符串   | 插件名称, eg: `obfs-local`
-   plugin_opts    | 字符串   | 插件参数, eg: `obfs=http;obfs-host=www.baidu.com`
    fast_open      | 布尔值   | 是否启用 [TCP Fast Open][F], 只适用于 `ss-local`, `ss-server`
    auth           | 布尔值   | 是否启用[一次验证][A]
    nofile         | 整数值   | 设置 Linux ulimit
@@ -76,10 +72,8 @@ Shadowsocks-libev for OpenWrt
    mptcp          | 布尔值   | 是否启用 [Multipath TCP][M]
 
 
-  [1]: https://github.com/shadowsocks/shadowsocks-libev
-  [2]: https://bintray.com/aa65535/opkg/shadowsocks-libev/_latestVersion "预编译 IPK 下载"
-  [B]: https://api.bintray.com/packages/aa65535/opkg/shadowsocks-libev/images/download.svg
-  [3]: https://github.com/shadowsocks/luci-app-shadowsocks
+  [1]: https://github.com/shadowsocksr/shadowsocksr-libev
+  [2]: https://github.com/kuoruan/luci-app-shadowsocks
   [A]: https://shadowsocks.org/en/spec/one-time-auth.html
   [E]: https://github.com/shadowsocks/luci-app-shadowsocks/wiki/Encrypt-method
   [F]: https://github.com/shadowsocks/shadowsocks/wiki/TCP-Fast-Open
