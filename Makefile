@@ -12,8 +12,8 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/shadowsocksr/shadowsocksr-libev.git
-PKG_SOURCE_DATE:=2017-05-10
-PKG_SOURCE_VERSION:=f1f70c4fc247cf1a0f4abddd80c56b24f902dcc2
+PKG_SOURCE_DATE:=2017-05-21
+PKG_SOURCE_VERSION:=0a3613ab2977de13596bc8e8393b977e012f895d
 
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
@@ -44,6 +44,7 @@ define Package/shadowsocksr-libev/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-local $(1)/usr/bin/ssr-local
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-redir $(1)/usr/bin/ssr-redir
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/ss-nat $(1)/usr/bin/ssr-nat
 endef
 
 $(eval $(call BuildPackage,shadowsocksr-libev))
